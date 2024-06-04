@@ -13,7 +13,7 @@ import {
   Center,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { StarIcon, ArrowBackIcon } from "@chakra-ui/icons";
+import { StarIcon, ArrowBackIcon, DeleteIcon } from "@chakra-ui/icons";
 import VideoPlayer from "./VideoPlayer";
 import defaultVideoImage from "../assets/media-1.jpg";
 
@@ -41,6 +41,12 @@ const VideosPage = () => {
     setBookmarks((prev) =>
       prev.includes(id) ? prev.filter((b) => b !== id) : [...prev, id]
     );
+  };
+
+  const deleteVideo = (id) => {
+    const updatedVideos = videos.filter((video) => video.id !== id);
+    setVideos(updatedVideos);
+    localStorage.setItem("videos", JSON.stringify(updatedVideos));
   };
 
   const filteredVideos = showBookmarked
@@ -100,6 +106,12 @@ const VideosPage = () => {
                   }
                   onClick={() => toggleBookmark(video.id)}
                   aria-label="Bookmark toggle"
+                />
+                <IconButton
+                  ml={2}
+                  icon={<DeleteIcon />}
+                  onClick={() => deleteVideo(video.id)}
+                  aria-label="Delete video"
                 />
               </CardBody>
             </Card>
