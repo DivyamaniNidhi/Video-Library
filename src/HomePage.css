@@ -1,0 +1,21 @@
+.homepage {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.homepage::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../src/assets/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    /* Adjust the opacity to make the image transparent */
+    opacity: 0.35;
+    /* Ensure the background is behind the content */
+    z-index: -1;
+}
